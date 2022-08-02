@@ -43,13 +43,31 @@ function postTest() {
   }`
     
     console.log(JSON.stringify(postando))
-    
+    // var url = "https://api-sa-east-1.hygraph.com/v2/cl6aycg090i2k01umeyl23b40/master?";
+
+    // var xhr = new XMLHttpRequest();
+    // xhr.open("POST", url);
+
+    // xhr.setRequestHeader("Content-Type", "application/json");
+
+    // xhr.onreadystatechange = function () {
+    //   if (xhr.readyState === 4) {
+    //       console.log(xhr.status);
+    //       console.log(xhr.responseText);
+    //   }};
+
+    // var data = `{"query":"mutation{createChamado(data: { title: \"Jeanzão\", description: \"face-mask\" }) \n    {title \n    description}}","variables":null}
+    // `;
+
+    // xhr.send(data);
+
 
       $.ajax({
         method: "POST",
-        url: `https://api-sa-east-1.hygraph.com/v2/cl6aycg090i2k01umeyl23b40/master?query=`,
-        contentType: "application/json",
-        data: JSON.stringify(postando)       
+        url: `https://api-sa-east-1.hygraph.com/v2/cl6aycg090i2k01umeyl23b40/master?`,
+        contentType: 0,
+        body: "{\n  \"query\": \"mutation{createChamado(data: { title: \\\"Jeanzito\\\", description: \\\"face-mask\\\" }) \\n    {title \\n    description}}\",\n  \"variables\": null\n}",
+        executor: 0,
        
     })
     .done(function(res) {
