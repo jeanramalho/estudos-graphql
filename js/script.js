@@ -34,7 +34,27 @@ function main() {
 
 }
 
-
-
-
 main()
+
+function postTest() {
+
+      $.ajax({
+        method: "POST",
+        url: `https://api-sa-east-1.hygraph.com/v2/cl6aycg090i2k01umeyl23b40/master`,
+        data: {
+          title: "teste de chamado",
+          description: "esse é o teste de um chamado",
+          date: 12/03/2022
+        }
+    })
+    .done(function(res) {
+        console.log(res)
+        console.log("Salvo com sucesso")
+
+        })
+    .fail(function(res) {
+      console.log(res)
+      console.log("não deu bom")
+    }) 
+
+    }
