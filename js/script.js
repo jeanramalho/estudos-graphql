@@ -1,6 +1,6 @@
 const card = document.getElementById('card')
 
-function main () {
+function main() {
     const getAllChamados = `{
         chamados {
           title
@@ -9,18 +9,19 @@ function main () {
         }
       }`
 
-    getChamados(getAllChamados)
+    $.ajax({
+            method: "GET",
+            url: `https://api-sa-east-1.hygraph.com/v2/cl6aycg090i2k01umeyl23b40/master?query=query${getAllChamados}`,
+        })
+        .done(function(res) {
+            let data = res.data
+
+            console.log(res.data)
+        })
 
 }
 
-async function getChamados (query) {
-    let res =  await fetch(`https://management.hygraph.com/graphql?query=query${query}`, {
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/json'
-  }
-})
-  .then(res => console.log(res));
-}
+
+
 
 main()
