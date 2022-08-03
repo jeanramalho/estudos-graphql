@@ -37,7 +37,7 @@ function main() {
 main()
 
 function postTest() {
-    let postando = `mutation{createChamado(data: { title: "Face Mask", description: "face-mask" }) 
+    let postando = `{createChamado(data: { title: "Face Mask", description: "face-mask" }) 
     {title 
     description}}
   }`
@@ -61,23 +61,19 @@ function postTest() {
 
     // xhr.send(data);
 
+    var url = `https://api-sa-east-1.hygraph.com/v2/cl6aycg090i2k01umeyl23b40/master?mutation `
+    var dados = `criaChamado{createChamado({ title: "Face Mask", description: "face-mask" })}`
 
-      $.ajax({
-        method: "POST",
-        url: `https://api-sa-east-1.hygraph.com/v2/cl6aycg090i2k01umeyl23b40/master?`,
-        contentType: 0,
-        body: "{\n  \"query\": \"mutation{createChamado(data: { title: \\\"Jeanzito\\\", description: \\\"face-mask\\\" }) \\n    {title \\n    description}}\",\n  \"variables\": null\n}",
-        executor: 0,
-       
-    })
-    .done(function(res) {
-        console.log(res)
-        console.log("Salvo com sucesso")
+    $.post(url, dados, function(result, status) {
+      console.log(result)
+      console.log(status)
+    }      
+  )
 
-        })
-    .fail(function(res) {
-      console.log(res)
-      console.log("não deu bom")
-    }) 
 
-    }
+
+  }
+
+      
+    
+    
