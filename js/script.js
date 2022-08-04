@@ -25,7 +25,6 @@ function main() {
                 <h4 class="date" id="date">${item.date}</h4>
               </div>
               `
-                console.log(output)
                 div.innerHTML += output
 
             })
