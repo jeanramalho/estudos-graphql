@@ -32,17 +32,18 @@ function main() {
 
         })
 
+    
+
 }
 
 main()
 
 function postTest() {
-    let postando = `{createChamado(data: { title: "Face Mask", description: "face-mask" }) 
-    {title 
-    description}}
-  }`
+  //   let postando = `{createChamado(data: { title: "Face Mask", description: "face-mask" }) 
+  //   {title 
+  //   description}}
+  // }`
     
-    console.log(JSON.stringify(postando))
     // var url = "https://api-sa-east-1.hygraph.com/v2/cl6aycg090i2k01umeyl23b40/master?";
 
     // var xhr = new XMLHttpRequest();
@@ -56,19 +57,49 @@ function postTest() {
     //       console.log(xhr.responseText);
     //   }};
 
-    // var data = `{"query":"mutation{createChamado(data: { title: \"Jeanzão\", description: \"face-mask\" }) \n    {title \n    description}}","variables":null}
+    // var data = `{"mutation{createChamado(data: { title: \"Jeanzão\", description: \"face-mask\" }) \n    {title \n    description}}","variables":null}
     // `;
 
-    // xhr.send(data);
+    // xhr.send({data});
 
-    var url = `https://api-sa-east-1.hygraph.com/v2/cl6aycg090i2k01umeyl23b40/master?mutation `
-    var dados = `criaChamado{createChamado({ title: "Face Mask", description: "face-mask" })}`
+    // var url = `https://api-sa-east-1.hygraph.com/v2/cl6aycg090i2k01umeyl23b40/master? `
+    // var dados = `{"query":"mutation{createChamado(data: { title: \"Jeanzão\", description: \"face-mask\" }) \n    {title \n    description}}","variables":null}`
 
-    $.post(url, dados, function(result, status) {
-      console.log(result)
-      console.log(status)
-    }      
-  )
+   
+    // fetch(url, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "Accept": "application/json"
+    //   },
+    //   body: JSON.stringify({dados})
+    // }).then(response => {
+    //   console.log(response.json())
+    //   return response.json()
+    // }).then(data => {
+    //   console.log(data)
+    // }).catch(error => {
+    //   console.log(error)
+    //})
+
+    $.ajax({
+      "executor": 0,
+      "method": "POST",
+      "url": "https://api-sa-east-1.hygraph.com/v2/cl6aycg090i2k01umeyl23b40/master?",
+      "body": JSON.stringify("{\"query\":\"mutation{createChamado(data: { title: \\\"Jeanzão\\\", description: \\\"face-mask\\\" }) \\n    {title \\n    description}}\",\"variables\":null}"),
+      "contentType": 0,
+      "headers": [],
+      "auth": {
+          "type": 0,
+          "params": {}
+      }
+  })
+  .done(function(res){
+    console.log(res)
+  })
+  .fail(function(error){
+    console.log(error)
+  })
 
 
 
